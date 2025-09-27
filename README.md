@@ -14,30 +14,32 @@ Some notes below:
     * You can pull a apptainer image as follows
 ```shell
 $ apptainer pull docker://deeplearnphysics/larcv2:ub20.04-cuda11.6-pytorch1.13-larndsim
-```
+```https://hub.docker.com/layers/deeplearnphysics/larcv2/ub2204-cu121-torch251-larndsim/images/sha256-59d520c9e2a22b5a474daa8b91a01bf1fb6ef76a1047cbf57c2b09ddf82abe41
 You can now launch a shell inside the apptainer with
 ```shell
-$ apptainer exec --bind /path/to/workshop/folder/ larcv2_ub20.04-cuda11.6-pytorch1.13-larndsim.sif bash
+$ apptainer exec --bind /path/to/workshop/folder/ /path/to/container.sif bash
 ```
 For nersc:
 ```shell
-$ salloc --nodes 1 --qos shared_interactive --time 00:30:00 --constraint gpu --gpus 1 --account=dune --image=deeplearnphysics/larcv2:ub20.04-cuda11.6-pytorch1.13-larndsim shifter /bin/bash
+$ salloc --nodes 1 --qos shared_interactive --time 00:30:00 --constraint gpu --gpus 1 --account=dune --image=deeplearnphysics/larcv2:ub2204-cu121-torch251-larndsim shifter /bin/bash
 ```
 ### Docker alternative
 
-You can also pull the docker image using docker (easier on Mac and Windows) directly with:
+You can also pull the docker image using docker (easier on Mac and Windows) directly. First install the docker desktop client from [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/).
+
+Once that is done and the client is running, simply do:
 ```shell
-$ docker pull deeplearnphysics/larcv2:ub20.04-cuda11.6-pytorch1.13-larndsim
+$ docker pull deeplearnphysics/larcv2:ub2204-cu121-torch251-larndsim
 ```
 To see which images are present on your system, you can use docker images. It will look something like this:
 ```shell
 $ docker images
-REPOSITORY                TAG                                     IMAGE ID       CREATED        SIZE
-deeplearnphysics/larcv2   ub20.04-cuda11.6-pytorch1.13-larndsim   cd28cb3cd04b   2 months ago   20.8GB
+REPOSITORY                TAG                                      IMAGE ID       CREATED         SIZE
+deeplearnphysics/larcv2   ub22.04-cuda12.1-pytorch2.4.0-larndsim   e97e0c78dc4b   12 months ago   25GB
 ```
 to run a shell in your image, simply do:
 ```shell
-$ docker run -i -t cd28cb3cd04b bash
+$ docker run -i -t e97e0c78dc4b bash
 ```
 
 * [Ask Francois](mailto:drielsma@slac.stanford.edu) for questions or a request for a separate tutorial if interested.
@@ -52,6 +54,11 @@ $ docker run -i -t cd28cb3cd04b bash
 /sdf/data/neutrino/public_html/spine_workshop/larcv/ # Example MPV/MPR LArCV files prior to reconstruction
 /sdf/data/neutrino/public_html/spine_workshop/reco/  # Reconstructed HDF5 files
 ```
+- NERSC
+```shell
+/global/cfs/cdirs/dune/users/drielsma/spine_workshop/larcv/ # Example MPV/MPR LArCV files prior to reconstruction
+/global/cfs/cdirs/dune/users/drielsma/spine_workshop/reco/  # Reconstructed HDF5 files
+```
 - Public
   - [Small LArCV files](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/larcv/) (Day 1)
     - [Generic](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/larcv/generic_small.root)
@@ -61,12 +68,12 @@ $ docker run -i -t cd28cb3cd04b bash
     - [Generic](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/generic_small_spine.h5)
     - [ICARUS](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_small_spine.h5)
     - [SBND](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/sbnd_small_spine.h5)
-  - [Medium reconstructed HDF5 files](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/) (Days 3-4)
+  - [Medium reconstructed HDF5 files](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/) (Days 3)
     - [Generic](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/generic_medium_spine.h5)
     - [ICARUS](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_medium_spine.h5)
     - [SBND](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/sbnd_medium_spine.h5)
-  - [BNB nu + cosmics](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_bnb_corsika_small_spine.h5) (Day 5)
-  - [BNB nue + cosmics](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_bnb_nue_corsika_small_spine.h5) (Day 5)
+  - [ICARUS BNB nu + cosmics](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_bnb_corsika_small_spine.h5) (Day 4)
+  - [ICARUS BNB nue + cosmics](https://s3df.slac.stanford.edu/data/neutrino/spine_workshop/reco/icarus_bnb_nue_corsika_small_spine.h5) (Day 4)
 
 3. The *network model parameters* for the inference tutorial can be found at:
 - S3DF
@@ -94,7 +101,7 @@ Most of the notebooks can be run strictly on CPU. The following notebooks will r
 For all other notebooks, you can run them locally, provided that you download:
 - Apptainer container
 - Necessary data
-- [SPINE v0.6.0](https://github.com/DeepLearnPhysics/spine)
+- [SPINE v0.7.1](https://github.com/DeepLearnPhysics/spine)
 
 To gain access to GPUs:
 - Everyone participating in this workshop should have access to both S3DF or NERSC, if you do not, please reach out to [Francois](mailto:drielsma@slac.stanford.edu).
