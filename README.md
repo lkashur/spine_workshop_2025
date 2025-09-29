@@ -13,7 +13,7 @@ Some notes below:
 * We assume basic knowledge about _software container_, in particular `Docker`. If you are learning for the first time, we recommend to use/learn about `Apptainer` ([website](https://apptainer.org/docs/user/latest/)) instead of `Docker`.
     * You can pull a apptainer image as follows
 ```shell
-$ apptainer pull docker://deeplearnphysics/larcv2:ub20.04-cuda11.6-pytorch1.13-larndsim
+$ apptainer pull docker://deeplearnphysics/larcv2:ub2204-cu121-torch251-larndsim
 ```https://hub.docker.com/layers/deeplearnphysics/larcv2/ub2204-cu121-torch251-larndsim/images/sha256-59d520c9e2a22b5a474daa8b91a01bf1fb6ef76a1047cbf57c2b09ddf82abe41
 You can now launch a shell inside the apptainer with
 ```shell
